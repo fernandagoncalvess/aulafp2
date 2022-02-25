@@ -32,11 +32,27 @@ public class ExemploController implements Serializable {
         this.pessoa = new Pessoa();
     }
 
-    public void excluir(){
-      this.pessoas.remove(this.pessoa);
+    public void excluir() {
+        if (pessoa.getNome().isEmpty()) {
+            if (pessoa != null) {
+            
+            for (Pessoa p : pessoas) {
+                if (p.getNome().equals(pessoa.getNome())) {
+                    pessoas.remove(p);
+                    addMessage(FacesMessage.SEVERITY_INFO, "Informação", "Pesssoa excluída");
+                    return;
+                }
+            }
+        } 
+        }
+else {
+            addMessage(FacesMessage.SEVERITY_WARN, "Informação", "Selecione uma Pessoa");
+}
+   
     }
 
-    public void adicionar() {
+
+public void adicionar() {
         System.out.println("Adicionou pessoa na lista.");
         System.out.println("Nome: " + this.pessoa.getNome());
         this.pessoas.add(pessoa);
