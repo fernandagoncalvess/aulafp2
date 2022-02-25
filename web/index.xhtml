@@ -45,24 +45,29 @@
             
             
             <br></br> <br></br>
-            <p:dataTable id="tabela" var="pessoa" value="#{exemploController.pessoas}">
+            <p:dataTable id="pessoas" var="item" value="#{exemploController.pessoas}" 
+                         selection="#{exemploController.pessoa}" selectionMode="single" rowKey="#{item.nome}" >
                 <f:facet name="header">
                     Pessoas Cadastradas
                 </f:facet>
                 <p:column headerText="Nome">
-                    <h:outputText value="#{pessoa.nome}"/>
+                    <h:outputText value="#{item.nome}"/>
                 </p:column>
                  <p:column headerText="DataNascimento">
-                    <h:outputText value="#{pessoa.dataNascimento}"/>
+                    <h:outputText value="#{item.dataNascimento}"/>
                 </p:column>
                 
                  <p:column headerText="Status">
-                    <h:outputText value="#{pessoa.status}"/>
+                    <h:outputText value="#{item.status}"/>
                 </p:column>
                 
                  <p:column headerText="UF">
-                    <h:outputText value="#{pessoa.uf}"/>
+                    <h:outputText value="#{item.uf}"/>
                 </p:column>
+                
+                <f:facet name="footer">
+                    <p:commandButton value="Excluir" action="#{exemploController.excluir()}" update="pessoas"/>
+                </f:facet>
             </p:dataTable>
         </h:form>
     </h:body>
